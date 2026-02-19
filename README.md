@@ -1,10 +1,7 @@
 # Homework 3 – DataFrame Solutions
-## Data Science Batch 55
+## Data Science Batch 57
 
-Repositori ini berisi solusi untuk tugas analisis data menggunakan Python dan library Pandas. Fokus utama tugas ini adalah pembersihan data, manipulasi kolom, dan ekstraksi wawasan bisnis dari dataset transaksi.
-
----
-
+Repositori ini berisi solusi untuk tugas analisis data menggunakan Python dan library Pandas. Fokus utama tugas ini adalah pembersihan data, manipulasi kolom, dan ekstraksi wawasan bisnis dari dataset transaksi. dan ini salah satu tugas HW_3 dalam bothcamp di DigitalSkola
 # Ringkasan Hasil (Summary of Results)
 
 # Task 1: Kolom Nama Lengkap
