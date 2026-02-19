@@ -1,97 +1,60 @@
 # Homework 3 – DataFrame Solutions
 ## Data Science Batch 55
 
+Repositori ini berisi solusi untuk tugas analisis data menggunakan Python dan library Pandas. Fokus utama tugas ini adalah pembersihan data, manipulasi kolom, dan ekstraksi wawasan bisnis dari dataset transaksi.
+
 ---
 
-## Summary of Results
+# Ringkasan Hasil (Summary of Results)
 
-### Task 1: Full Name Column ✓
-Created a new column "Full Name" combining First Name and Last Name in title case format.
-- Position: Inserted after "Last Name" column
-- Format: Title case (e.g., "Elvride Aries", "Basir Ninuk")
+# Task 1: Kolom Nama Lengkap
+* **Deskripsi:** Membuat kolom baru "Full Name" yang menggabungkan First Name dan Last Name.
+* **Posisi:** Disisipkan setelah kolom "Last Name".
+* **Format:** Menggunakan format Title Case (Contoh: "Elvride Aries").
 
-### Task 2: GMV Calculation ✓
-Added GMV (Gross Merchandise Value) column after "Seller Discount".
+# Task 2: Perhitungan GMV
+* **Rumus:** `GMV = Transaction Amount - Seller Discount + Delivery Fee`.
+* **Hasil:** Total GMV di seluruh transaksi adalah **Rp 2.714.593.600,00**.
 
-**Formula:** 
-```
-GMV = Transaction Amount - Seller Discount + Delivery Fee
-```
+# Task 3: Pengelompokan Kategori & Tabel Pivot
+Data dikelompokkan menjadi dua grup kategori utama untuk melihat tren bulanan:
+* **Group 1:** Fashion, Babies/ Kids, Beauty/ Health.
+* **Group 2:** Service/ Mokado, Gadget/ Komputer.
 
-**Total GMV across all transactions:** Rp 2,714,593,600.00
+# Tabel Pivot - Total GMV per Bulan:
 
-### Task 3: Category Grouping & Pivot Table ✓
-
-**Category Groups:**
-- **Group 1:** Fashion, Babies/ Kids, Beauty/ Health
-- **Group 2:** Service/ Mokado, Gadget/ Komputer
-
-**Pivot Table - Total GMV per Month by Group:**
-
-| Year-Month | Group 1      | Group 2        | Total          |
+| Year-Month | Group 1 | Group 2 | Total |
 |------------|--------------|----------------|----------------|
-| 2017-07    | 83,916,600   | 194,045,200    | 277,961,800    |
-| 2017-08    | 59,189,600   | 341,657,100    | 400,846,700    |
-| 2017-09    | 198,279,800  | 156,506,600    | 354,786,400    |
-| 2017-10    | 92,012,400   | 135,405,000    | 227,417,400    |
-| 2017-11    | 221,708,700  | 300,590,900    | 522,299,600    |
-| 2017-12    | 89,257,800   | 435,267,100    | 524,524,900    |
+| 2017-07 | 83,916,600 | 194,045,200 | 277,961,800 |
+| 2017-08 | 59,189,600 | 341,657,100 | 400,846,700 |
+| 2017-09 | 198,279,800 | 156.506.600 | 354,786,400 |
+| 2017-10 | 92,012,400 | 135,405,000 | 227,417,400 |
+| 2017-11 | 221,708,700 | 300,590,900 | 522,299,600 |
+| 2017-12 | 89,257,800 | 435,267,100 | 524,524,900 |
 
-**Key Insights:**
-- November 2017 had the highest combined GMV
-- Group 2 (Service/Gadget) dominated in August and December
-- Group 1 (Fashion/Kids/Beauty) peaked in November
+# Task 4 & 5: Analisis Seller Terbaik
+* **Seller dengan GMV Tertinggi (Agustus 2017):** Petrus Sinda (Rp 18.500.000,00).
+* **Seller dengan Transaksi Terbanyak (Fashion - Sept 2017):** A.Indraputra Wahyu.
+  * *Catatan: Jika terdapat jumlah transaksi yang sama, sistem memilih urutan alfabet pertama*.
 
-### Task 4: Seller with Highest GMV (August 2017) ✓
+# Implementasi Kode Python
+### Fungsi Utama yang Digunakan:
+* `pd.read_csv()` – Memuat data.
+* `.str.title()` – Mengonversi teks menjadi format title case.
+* `pd.to_datetime()` – Mengonversi string tanggal menjadi objek datetime.
+* `.pivot_table()` – Membuat tabel ringkasan data.
+* `.groupby()` – Mengelompokkan data berdasarkan kriteria tertentu.
+* `.sort_values()` – Mengurutkan hasil data.
 
-**ANSWER:**
-- **Seller Name:** Petrus Sinda
-- **Total GMV:** Rp 18,500,000.00
+### Langkah Pembersihan Data:
+1. Menghapus karakter koma pada kolom numerik.
+2. Mengonversi angka bertipe string ke tipe data *float*.
+3. Membuat objek datetime yang tepat untuk analisis.
+4. Menangani nilai kosong atau *null values* secara tepat.
 
-**Top 5 Sellers in August 2017:**
-1. Petrus Sinda - Rp 18,500,000
-2. Nita Musriyatul - Rp 14,006,000
-3. Liany Ratih - Rp 14,006,000
-4. Leony Wiwit - Rp 13,705,000
-5. Wahyu Falentina - Rp 12,429,000
-
-### Task 5: Seller with Most Transactions in Fashion (September 2017) ✓
-
-**ANSWER:**
-- **Seller Name:** A.Indraputra Wahyu
-- **Transaction Count:** 1
-
-**Note:** In the dataset for September 2017 Fashion category, multiple sellers have exactly 1 transaction each. The result shows the first seller alphabetically among those with the maximum count.
-
----
-
-## Python Code Implementation
-
-### Key Functions Used:
-- `pd.read_csv()` - Load data
-- `.str.title()` - Convert to title case
-- `pd.to_datetime()` - Convert date strings
-- `.pivot_table()` - Create summary tables
-- `.groupby()` - Aggregate data by groups
-- `.sort_values()` - Sort results
-
-### Data Cleaning Steps:
-1. Removed commas from numeric columns
-2. Converted string numbers to float
-3. Created proper datetime objects
-4. Handled missing/null values appropriately
-
----
-
-## Submission Instructions
-
-1. Upload the Jupyter notebook to Google Colab
-2. Upload both CSV files (Paid-Transaction.csv and Seller.csv) to Colab
-3. Update file paths in the notebook if needed
-4. Run all cells to verify results
-5. Set sharing to "Anyone with the link can view"
-6. Submit the Colab notebook link
-
----
-
-**All tasks completed successfully! ✓**
+## Instruksi Penggunaan (Submission)
+1. Unggah Jupyter notebook ke **Google Colab**.
+2. Unggah file CSV (`Paid-Transaction.csv` dan `Seller.csv`) ke Colab.
+3. Perbarui jalur file (*file paths*) di dalam notebook jika diperlukan.
+4. Jalankan semua sel (*Run All*) untuk memverifikasi hasil.
+5. Atur izin berbagi menjadi **"Anyone with the link can view"**.
